@@ -53,7 +53,7 @@ One important note is that the world block is illuminated and not in the shadowe
 The points `a`, `b`, and `c` are all vertices of significance from the world block.
 The points `d`, `e`, and `f` are their respective projections relative to the light source.
 
-Here `d, e, f` are projected to the edge of the image. In the actual implementation, they are projected arbitraily far so that they are well off-screen.
+Here `d, e, f` are projected to the edge of the image. In the actual implementation, they are projected arbitrarily far so that they are well off-screen.
 
 We can also see that the polygon forming the shadow *shares* vertices with the line segments `(a, b)` and `(b, c)`.
 In fact, the shadow area consists of *exactly* two quadrilaterals: `(a, b, e, d)` and `(b, c, f, e)`.
@@ -108,7 +108,7 @@ end
 
 The order which we define the segments is important. Many graphical libraries require you to supply vertices in a certain *winding order* (clockwise or counterclockwise) and we need the order of vertices in the generated quadrilaterals to have the correct order.
 To determine if a segment is facing away from the light, we need the light's position `p`, the segment's midpoint `mp`, and the segment's normal `n`.
-For those who have forgotten linear algebra (like myself) the segment is backfacing if and only if the vector dot product `(p - mp) * n < 0`.
+For those who have forgotten linear algebra (like myself) the segment is back-facing if and only if the vector dot product `(p - mp) * n < 0`.
 
 In code,
 
@@ -117,7 +117,7 @@ function segment_back_facing(light, segment)
     -- to determine whether a line segment is facing towards a light, we
     -- perform a vector dot product between the segment normal and the vector
     -- from the segment's midpoint to the light. the result will be negative
-    -- if and only if the normal is backfacing.
+    -- if and only if the normal is back-facing.
 
     local midpoint = {
         x = (segment.a.x + segment.b.x) / 2,
