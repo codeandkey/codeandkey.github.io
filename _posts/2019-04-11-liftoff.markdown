@@ -6,3 +6,8 @@ categories:
 ---
 
 Welcome! In this blog you'll find posts about awesome topics in math and computing and stuff.
+
+---
+
+<div id="commento"></div>
+<script src="http://droid.spr.io/js/commento.js"></script>
