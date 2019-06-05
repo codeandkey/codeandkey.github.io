@@ -1,0 +1,164 @@
+---
+layout: post
+title: "2D Illumination: Part 1"
+date: 2019-06-04 17:00:00 -0500
+categories: 
+---
+
+Hi! This series will go through my technique for rendering lights and shadows in 2D games.
+To keep the source code as short and readable as possible we will use [Love2d](https://love2d.org/), a free and open source 2D game engine built for Lua.
+
+![demo](https://github.com/codeandkey/shadows/raw/master/demo.gif)
+
+## prelude
+
+This series assumes the reader has a working understanding of graphics programming, notably *textures*, *framebuffers*, and *shaders*.
+While this implementation has been written in Lua, the algorithm described here can be implemented in any language!
+The source code for the completed demo can be found on [GitHub](https://github.com/codeandkey/shadows) under the MIT license.
+
+## building the world
+
+To start we will need to define a world with objects that can cast shadows.
+The demo uses a world made of axis-aligned rectangles, defined by their coordinates and dimensions:
+
+{% highlight lua %}
+-- world_blocks defines the solid walls in the demo.
+-- each block has fields 'x', 'y' for position, 'w', 'h' for size
+local world_blocks = {
+        { x = 300, y = 300, w = 100, h = 100 },
+        { x = 100, y = 400, w = 50, h = 200 },
+        { x = 500, y = 400, w = 100, h = 10 },
+        { x = 300, y = 100, w = 130, h = 100 },
+}
+{% endhighlight %}
+
+We'll also render a texture behind all of these blocks to make a "floor". In the demo this is just stretched over the screen.
+
+At this point your world should look pretty bland:
+
+![world](https://i.imgur.com/tRNom58.png)
+
+## where do the shadows go?
+
+Now we have a basic world ready. How will we cast shadows?
+One thing to consider is where we want shadows to actually begin.
+Consider a world with a single object and a single light:
+
+![diag1](https://i.imgur.com/E4WCmpb.png)
+
+There's a lot going on here. Let's go through it step by step.
+One important note is that the world block is illuminated and not in the shadowed area.
+
+The points `a`, `b`, and `c` are all vertices of significance from the world block.
+The points `d`, `e`, and `f` are their respective projections relative to the light source.
+
+Here `d, e, f` are projected to the edge of the image. In the actual implementation, they are projected arbitraily far so that they are well off-screen.
+
+We can also see that the polygon forming the shadow *shares* vertices with the line segments `(a, b)` and `(b, c)`.
+In fact, the shadow area consists of *exactly* two quadrilaterals: `(a, b, e, d)` and `(b, c, f, e)`.
+
+#### *What's special about (a, b) and (b, c)? What about the other edges of the block?*
+I'm glad you asked. `(a, b)` and `(b, c)` are the only edges of the block that face *away* from the light.
+This is the most important part of the algorithm and determines when shadows should be drawn.
+Each back-facing line segment is projected away from the light, and then a quadrilateral is formed from the segment vertices and the projected segment vertices. 
+
+So, `(a, b)` is detected to be back-facing, and transformed into `(a, b, e, d)`.
+Likewise, `(b, c)` is transformed into `(b, c, f, e)`.
+
+Both of the quadrilaterals will cover the entire space we need to fill with shadow.
+
+## finding the segments
+
+From our world of blocks, we now need to compute a list of back-facing edges.
+First, it would be useful to get our world in the form of line segments instead of rectangles.
+In this implementation each block receives a new field 'segments' with a list of the outlining line segments.
+Also, each segment has a *normal* vector, pointing in the direction the edge faces. 
+For example, in the above diagram the *normal* vectors for `(a, b)` and `(b, c)` are `m` and `n` respectively.
+This will be useful for locating the segments which are back-facing.
+
+{% highlight lua %}
+for _, block in ipairs(world_blocks) do
+    -- compute the segments in a clockwise manner
+
+    block.segments = {
+        { -- top edge
+          a = { x = v.x, y = v.y },
+          b = { x = v.x + v.w, y = v.y },
+          normal = { x = 0, y = -1 },
+        },
+        { -- right edge
+          a = { x = v.x + v.w, y = v.y },
+          b = { x = v.x + v.w, y = v.y + v.h },
+          normal = { x = 1, y = 0 },
+        },
+        { -- bottom edge
+          a = { x = v.x + v.w, y = v.y + v.h },
+          b = { x = v.x, y = v.y + v.h },
+          normal = { x = 0, y = 1 },
+        },
+        { -- left edge
+          a = { x = v.x, y = v.y + v.h },
+          b = { x = v.x, y = v.y },
+          normal = { x = -1, y = 0 },
+        },
+    }
+end
+{% endhighlight %}
+
+The order which we define the segments is important. Many graphical libraries require you to supply vertices in a certain *winding order* (clockwise or counterclockwise) and we need the order of vertices in the generated quadrilaterals to have the correct order.
+To determine if a segment is facing away from the light, we need the light's position `p`, the segment's midpoint `mp`, and the segment's normal `n`.
+For those who have forgotten linear algebra (like myself) the segment is backfacing if and only if the vector dot product `(p - mp) * n < 0`.
+
+In code,
+
+{% highlight lua %}
+function segment_back_facing(light, segment)
+    -- to determine whether a line segment is facing towards a light, we
+    -- perform a vector dot product between the segment normal and the vector
+    -- from the segment's midpoint to the light. the result will be negative
+    -- if and only if the normal is backfacing.
+
+    local midpoint = {
+        x = (segment.a.x + segment.b.x) / 2,
+        y = (segment.a.y + segment.b.y) / 2,
+    }
+
+    local a = segment.normal
+
+    local b = {
+        x = light.x - midpoint.x,
+        y = light.y - midpoint.y,
+    }
+
+    return (a.x * b.x + a.y * b.y < 0)
+end
+{% endhighlight %}
+
+## building the lightmaps
+
+Each light will maintain a texture representing the illumination it contributes to the world. We'll call this the light's *lightmap*.
+A white color in the lightmap represents white light, and black will represent darkness.
+The light's position is centered in the lightmap. It is later blended into the world at the correct location.
+Similarly, other colors can be used to create different colored lights.
+
+Let's start with a white light. First, we clear the lightmap to what the light should illuminate if there are no obstructions.
+
+![lightmap\_empty](https://i.imgur.com/6CmSDFC.png)
+
+Then, we collect all of the back-facing segments and construct their shadow-quadrilaterals.
+We render these into the lightmap as black shapes, cutting out illuminated sections:
+
+(Here, the block casting the shadow is directly to the left of the light.)
+
+![lightmap\_full](https://i.imgur.com/jK2JVOR.png)
+
+With completed lightmaps for each light, we are now very close to having lights and shadows.
+Part 2 will cover the process of blending lightmaps together and making the final composite image.
+
+Questions, feedback and comments are appreciated! I encourage you to leave one below.
+Thanks for sticking around!
+
+---
+
+<div id="commento"></div>
+<script src="https://droid.spr.io/js/commento.js"></script>
