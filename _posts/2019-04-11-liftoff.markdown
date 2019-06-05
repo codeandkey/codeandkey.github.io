@@ -10,4 +10,4 @@ Welcome! In this blog you'll find posts about awesome topics in math and computi
 ---
 
 <div id="commento"></div>
-<script src="http://droid.spr.io/js/commento.js"></script>
+<script src="https://droid.spr.io/js/commento.js"></script>
