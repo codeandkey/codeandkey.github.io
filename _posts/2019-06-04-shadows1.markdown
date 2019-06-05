@@ -8,7 +8,8 @@ categories:
 Hi! This series will go through my technique for rendering lights and shadows in 2D games.
 To keep the source code as short and readable as possible we will use [Love2d](https://love2d.org/), a free and open source 2D game engine built for Lua.
 
-![demo](https://github.com/codeandkey/shadows/raw/master/demo.gif)
+<div width="100%" style="text-align: center"><img src="https://github.com/codeandkey/shadows/raw/master/demo.gif" alt="demo"></div>
+<br>
 
 ## prelude
 
@@ -36,7 +37,7 @@ We'll also render a texture behind all of these blocks to make a "floor". In the
 
 At this point your world should look pretty bland:
 
-![world](https://i.imgur.com/tRNom58.png)
+<div width="100%" style="text-align: center"><img src="https://i.imgur.com/tRNom58.png" alt="A very bland and lightless world"></div>
 
 ## where do the shadows go?
 
@@ -44,7 +45,7 @@ Now we have a basic world ready. How will we cast shadows?
 One thing to consider is where we want shadows to actually begin.
 Consider a world with a single object and a single light:
 
-![diag1](https://i.imgur.com/E4WCmpb.png)
+<div width="100%" style="text-align: center"><img src="https://i.imgur.com/E4WCmpb.png" alt="Projection diagram"></div>
 
 There's a lot going on here. Let's go through it step by step.
 One important note is that the world block is illuminated and not in the shadowed area.
@@ -143,14 +144,14 @@ Similarly, other colors can be used to create different colored lights.
 
 Let's start with a white light. First, we clear the lightmap to what the light should illuminate if there are no obstructions.
 
-![lightmap\_empty](https://i.imgur.com/6CmSDFC.png)
+<div width="100%" style="text-align: center"><img src="https://i.imgur.com/6CmSDFC.png" alt="An empty lightmap. We haven't touched it yet."></div>
 
 Then, we collect all of the back-facing segments and construct their shadow-quadrilaterals.
 We render these into the lightmap as black shapes, cutting out illuminated sections:
 
 (Here, the block casting the shadow is directly to the left of the light.)
 
-![lightmap\_full](https://i.imgur.com/jK2JVOR.png)
+<div width="100%" style="text-align: center"><img src="https://i.imgur.com/jK2JVOR.png" alt="A lightmap after shadows have been rendered for the light"></div>
 
 With completed lightmaps for each light, we are now very close to having lights and shadows.
 Part 2 will cover the process of blending lightmaps together and making the final composite image.
