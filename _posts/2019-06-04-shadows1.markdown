@@ -19,7 +19,7 @@ The source code for the completed demo can be found on [GitHub](https://github.c
 
 ## building the world
 
-To start we will need to define a world with objects that can cast shadows.
+To start, we define a world with objects that can cast shadows.
 The demo uses a world made of axis-aligned rectangles, defined by their coordinates and dimensions:
 
 {% highlight lua %}
@@ -41,9 +41,9 @@ At this point your world should look pretty bland:
 
 ## where do the shadows go?
 
-Now we have a basic world ready. How will we cast shadows?
-One thing to consider is where we want shadows to actually begin.
-Consider a world with a single object and a single light:
+Now we have a basic world ready.
+Given a light and the world, we need to figure out where shadows should be drawn.
+Start with a single object and a single light:
 
 <div width="100%" style="text-align: center"><img src="https://i.imgur.com/E4WCmpb.png" alt="Projection diagram"></div>
 
