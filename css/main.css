@@ -112,6 +112,8 @@
 
 .content-bar {
     margin-top: 1em;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
     opacity: 0;
     width: 100%;
 }
