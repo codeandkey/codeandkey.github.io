@@ -105,6 +105,9 @@
     width: 100%;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 0.5em;
+}
+
+.content-title#about-title {
     margin-bottom: 0.5em;
 }
 
