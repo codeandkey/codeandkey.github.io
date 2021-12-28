@@ -1,0 +1,159 @@
+@keyframes fadein {
+    from {opacity: 0;}
+    to   {opacity: 1;}
+}
+
+.name-box {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.name-box-border {
+    position: fixed;
+    left: 10%;
+    right: 10%;
+    top: 6em;
+    height: 1px;
+    background-color: lightgrey;
+    opacity: 0;
+    animation: fadein 1s ease-in-out 0.5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+.contact-bar {
+    position: fixed;
+    top: 7em;
+    left: 10%;
+    right: 10%;
+    height: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+}
+
+.contact-info-container {
+    width: 50%;
+}
+
+@keyframes email-fadein {
+    from { opacity: 0; margin-left: -2em; }
+    to   { opacity: 1; margin-left: 0; }
+}
+
+.contact-email {
+    color: lightgrey;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.1em;
+    opacity: 0;
+
+    animation: email-fadein 1s ease-in-out 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes icons-fadein {
+    from { opacity: 0; margin-right: -2em; }
+    to   { opacity: 1; margin-right: 0; }
+}
+
+.contact-icons {
+    color: lightgrey;
+    font-size: 2em;
+    text-align: right;
+    opacity: 0;
+    animation: icons-fadein 1s ease-in-out 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.contact-link {
+    color: grey;
+    text-decoration: none;
+}
+
+.menu-element {
+    position: fixed;
+    width: 80%;
+    left: 10%;
+}
+
+.content-container {
+    position: fixed;
+    top: 10em;
+    left: 10%;
+    right: 10%;
+    bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-title {
+    font-size: 1.8em;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.content-bar {
+    padding: 1em;
+    margin-top: 1em;
+    opacity: 0;
+    width: 100%;
+    border: 1px solid lightgrey;
+}
+
+.content-bar#about {
+    animation: fadein 1s ease-in-out 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.content-bar#projects {
+    animation: fadein 1s ease-in-out 1.75s;
+    animation-fill-mode: forwards;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.project {
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: 3em;
+    align-items: stretch;
+    margin-top: 1em;
+}
+
+.project-title {
+    color: black;
+    font-size: 1.25em;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.project-desc {
+    color: grey;
+    font-size: 0.75em;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.project-img {
+    margin-left: auto;
+    height: 100%;
+}
