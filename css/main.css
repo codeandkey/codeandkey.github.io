@@ -101,7 +101,6 @@
 .content-title {
     font-size: 1.8em;
     font-family: 'PT Sans', sans-serif;
-    text-align: center;
     width: 100%;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 0.5em;
@@ -116,7 +115,6 @@
     margin-top: 1em;
     opacity: 0;
     width: 100%;
-    border: 1px solid lightgrey;
 }
 
 .content-bar#about {
