@@ -69,7 +69,6 @@ body {
 
 .contact-bar {
     padding-top: 1em;
-    height: 2vw;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
