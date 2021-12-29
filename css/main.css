@@ -16,6 +16,7 @@ body {
     font-family: 'PT Sans', sans-serif;
     overflow: auto;
     height: 100%;
+    font-size: 3vmin;
 }
 
 .name-box-container {
@@ -23,14 +24,18 @@ body {
     top: 0px;
     left: 10%;
     right: 10%;
+    z-index: 10;
+}
+
+.name-box-opague {
     background-color: white;
-    z-index: 1;
+    width: 100%;
 }
 
 .name-box {
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    font-size: 3vw;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 3em;
     width: 100%;
     text-align: center;
     animation-name: fadein;
@@ -38,7 +43,7 @@ body {
 }
 
 .name-box-border {
-    height: 1px;
+    height: 0.1em;
     background-color: lightgrey;
     opacity: 0;
     animation: bfadein 1s ease-in-out 0.5s;
@@ -48,12 +53,8 @@ body {
 }
 
 .name-box-shadow {
-    position: fixed;
-    left: 10%;
-    right: 10%;
-    top: 9vw;
-    height: 2vw;
-    z-index: 1;
+    width: 100%;
+    height: 3em;
 }
 
 .layout {
@@ -61,11 +62,11 @@ body {
     top: 0%;
     left: 10%;
     right: 10%;
-    padding-top: 9vw;
+    padding-top: 11em;
 }
 
 .contact-bar {
-    padding-top: 1vw;
+    padding-top: 1em;
     height: 2vw;
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +86,8 @@ body {
 .contact-email {
     color: lightgrey;
     font-family: 'PT Sans', sans-serif;
-    font-size: 1.5vw;
+    font-size: 1.5em;
+    top: 0.5em;
     opacity: 0;
 
     animation: email-fadein 1s ease-in-out 1.5s;
@@ -99,7 +101,7 @@ body {
 
 .contact-icons {
     color: lightgrey;
-    font-size: 2em;
+    font-size: 3em;
     text-align: right;
     opacity: 0;
     animation: icons-fadein 1s ease-in-out 1.5s;
@@ -120,7 +122,7 @@ body {
 }
 
 .content-title {
-    font-size: 1.8em;
+    font-size: 2em;
     font-family: 'PT Sans', sans-serif;
     width: 100%;
     border-bottom: 1px solid lightgrey;
@@ -165,13 +167,13 @@ body {
 
 .project-title {
     color: black;
-    font-size: 1.25em;
+    font-size: 1.5em;
     font-family: 'PT Sans', sans-serif;
 }
 
 .project-desc {
     color: grey;
-    font-size: 0.75em;
+    font-size: 1em;
     font-family: 'PT Sans', sans-serif;
 }
 
