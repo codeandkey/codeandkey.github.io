@@ -17,6 +17,8 @@ body {
     overflow: auto;
     height: 100%;
     font-size: 3vmin;
+    left: 10%;
+    right: 10%;
 }
 
 .name-box-container {
