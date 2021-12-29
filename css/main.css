@@ -16,7 +16,7 @@ body {
     font-family: 'PT Sans', sans-serif;
     overflow: auto;
     height: 100%;
-    font-size: 3vmin;
+    font-size: 1.75vh;
     left: 10%;
     right: 10%;
 }
@@ -64,7 +64,7 @@ body {
     top: 0%;
     left: 10%;
     right: 10%;
-    padding-top: 11em;
+    padding-top: 16em;
 }
 
 .contact-bar {
