@@ -86,7 +86,6 @@ body {
 
 .contact-email {
     color: lightgrey;
-    font-family: 'PT Sans', sans-serif;
     font-size: 1.5em;
     top: 0.5em;
     opacity: 0;
@@ -124,7 +123,6 @@ body {
 
 .content-title {
     font-size: 2em;
-    font-family: 'PT Sans', sans-serif;
     width: 100%;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 0.5em;
@@ -169,13 +167,11 @@ body {
 .project-title {
     color: black;
     font-size: 1.5em;
-    font-family: 'PT Sans', sans-serif;
 }
 
 .project-desc {
     color: grey;
     font-size: 1em;
-    font-family: 'PT Sans', sans-serif;
 }
 
 .project-img {
