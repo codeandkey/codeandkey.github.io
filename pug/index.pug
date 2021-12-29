@@ -2,36 +2,40 @@ html
     head
         include incl/head.pug
     body(onload='onLoad()')
-        div(class='name-box') Justin Stanley
-        div(class='name-box-border')
-        div(class='contact-bar')
-            div(class='contact-info-container')
-                div(class='contact-email')
-                    a(href='mailto:jtst@iastate.edu' class='contact-link') jtst@iastate.edu
-            div(class='contact-info-container')
-                div(class='contact-icons')
-                    a(href='https://github.com/codeandkey')
-                        i(class='fab fa-github' style='padding-left: 0.5em; color: grey;')
-                    a(href='https://www.linkedin.com/in/justin-stanley-99899b18a')
-                        i(class='fab fa-linkedin' style='padding-left: 0.5em; color: grey;')
-        div(class='content-container')
-            div(class='content-bar' id='about')
-                div(class='content-title' id='about-title') about
-                a M.S. student of Computer Science at Iowa State University. Studying applications and acceleration of deep reinforcement learning systems.
-            div(class='content-bar' id='projects')
-                div(class='content-title') projects
-                a(class='project' id='neocortex' href='https://github.com/codeandkey/neocortex')
-                    div(class='project-info')
-                        div(class='project-title') neocortex
-                        div(class='project-desc') a lightweight parallel chess engine
-                    img(src='/img/neocortex.jpg' class='project-img')
-                a(class='project' id='mtest' href='https://github.com/codeandkey/mtest')
-                    div(class='project-info')
-                        div(class='project-title') mtest
-                        div(class='project-desc') a minimal C++ testing framework
-                    img(src='/img/mtest.jpg' class='project-img')
-                a(class='project' id='mii' href='https://github.com/codeandkey/mii')
-                    div(class='project-info')
-                        div(class='project-title') mii
-                        div(class='project-desc') an integrated search engine for HPC modules
-                    img(src='/img/mii.jpg' class='project-img')
+        div(class='name-box-container')
+            div(class='name-box') Justin Stanley
+            div(class='name-box-border')
+            div(class='contact-bar')
+                div(class='contact-info-container')
+                    div(class='contact-email')
+                        a(href='mailto:jtst@iastate.edu' class='contact-link') jtst@iastate.edu
+                div(class='contact-info-container')
+                    div(class='contact-icons')
+                        a(href='https://github.com/codeandkey')
+                            i(class='fab fa-github' style='padding-left: 0.5em; color: grey;')
+                        a(href='https://www.linkedin.com/in/justin-stanley-99899b18a')
+                            i(class='fab fa-linkedin' style='padding-left: 0.5em; color: grey;')
+        div(class='name-box-shadow')
+            img(src='/img/shadow.png' width='100%' height='100%')
+        div(class='layout')
+            div(class='content-container')
+                div(class='content-bar' id='about')
+                    div(class='content-title' id='about-title') about
+                    a M.S. student of Computer Science at Iowa State University. Studying applications and acceleration of deep reinforcement learning systems.
+                div(class='content-bar' id='projects')
+                    div(class='content-title') projects
+                    a(class='project' id='neocortex' href='https://github.com/codeandkey/neocortex')
+                        div(class='project-info')
+                            div(class='project-title') neocortex
+                            div(class='project-desc') a lightweight parallel chess engine
+                        img(src='/img/neocortex.jpg' class='project-img')
+                    a(class='project' id='mtest' href='https://github.com/codeandkey/mtest')
+                        div(class='project-info')
+                            div(class='project-title') mtest
+                            div(class='project-desc') a minimal C++ testing framework
+                        img(src='/img/mtest.jpg' class='project-img')
+                    a(class='project' id='mii' href='https://github.com/codeandkey/mii')
+                        div(class='project-info')
+                            div(class='project-title') mii
+                            div(class='project-desc') an integrated search engine for HPC modules
+                        img(src='/img/mii.jpg' class='project-img')
