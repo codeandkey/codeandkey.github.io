@@ -3,7 +3,7 @@ html
         include incl/head.pug
     body(onload='onLoad()')
         div(class='name-box-container')
-            div(class='name-box-opague')
+            div(id='name-box-opague')
                 div(class='name-box') Justin Stanley
                 div(class='name-box-border')
                 div(class='contact-bar')
@@ -16,7 +16,7 @@ html
                                 i(class='fab fa-github' style='padding-left: 0.5em; color: grey;')
                             a(href='https://www.linkedin.com/in/justin-stanley-99899b18a')
                                 i(class='fab fa-linkedin' style='padding-left: 0.5em; color: grey;')
-            div(class='name-box-shadow')
+            div(id='name-box-shadow')
                 img(src='/img/shadow.png' width='100%' height='100%')
         div(class='layout')
             div(class='content-container')

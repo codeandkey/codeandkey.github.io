@@ -12,6 +12,15 @@ function onLoad() {
             titles[i].style.color = '#cfcfcf';
         }
 
+        document.getElementById('name-box-opague')
+            .style
+            .background = '#111111';
+
+        var shadow = document.getElementById('name-box-shadow');
+
+        shadow.style.filter = 'brightness(0.07)';
+        shadow.style.height = '3em'; // needed for some reason
+
         document.body.style.background = '#111111';
         document.body.style.color = '#cfcfcf';
     }

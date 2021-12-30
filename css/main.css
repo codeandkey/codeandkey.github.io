@@ -29,7 +29,7 @@ body {
     z-index: 10;
 }
 
-.name-box-opague {
+#name-box-opague {
     background-color: white;
     width: 100%;
 }
@@ -54,7 +54,7 @@ body {
     width: 100%;
 }
 
-.name-box-shadow {
+#name-box-shadow {
     width: 100%;
     height: 3em;
 }
