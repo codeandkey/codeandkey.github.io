@@ -3,8 +3,9 @@
 
 function onLoad() {
     var hours = (new Date).getHours();
+	var dark_mode = true; // (hours < 6 || hours >= 20);
 
-    if (hours < 6 || hours >= 20) {
+    if (dark_mode) {
         // Apply dark mode!
         var titles = document.getElementsByClassName('project-title');
 
